@@ -63,7 +63,7 @@ router.put('/:id',async (req,res)=>{
             return res.status(404).send({message:"Book not found"}); //Sending a response with status code 404 if the book is not found
         }
         const updatedBook=await Book.findByIdAndUpdate(req.params.id,req.body,{new:true}); //Updating the book with the new data
-        return res.status(200).json({message:"Book updated successfully"}); //Sending a response with status code 200 and the updated book
+        return res.status(200).json({message:`Book updated  to ${updatedBook.title} successfully`}); //Sending a response with status code 200 and the updated book
     }
     catch(error){
         console.log(error);

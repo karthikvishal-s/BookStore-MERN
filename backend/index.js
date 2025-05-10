@@ -3,6 +3,7 @@ import {PORT,mongoDBURL} from "./config.js"  // Importing the PORT constant from
 import mongoose from "mongoose"; // Importing mongoose for MongoDB object modeling
 import { Book } from "./models/bookModels.js" // Importing the Book model from bookModels.js
 import booksRoute from "./routes/booksRoute.js" // Importing the booksRoute from booksRoute.js
+import cors from 'cors'; // Importing cors for Cross-Origin Resource Sharing
 
 const app=express();
 
@@ -16,14 +17,15 @@ app.get('/',(req,res)=>{  //Creating a route for the root URL
 
 app.use('/books',booksRoute)
 
-
+//Middleware to enable CORS for all routes
+app.use(cors()); //Allowing all origins to access the resources
 
 mongoose
     .connect(mongoDBURL)
     .then(() => {
         console.log("Connected to MongoDB");
         app.listen(PORT,()=>{   //.listen() method is used in express to bind and listen for connections on the specified host and port
-            console.log(`Server is running on port ${PORT}`); //Callback function
+            console.log(`Application is running on port ${PORT}`); //Callback function
         });
     })
     .catch((error) => {
