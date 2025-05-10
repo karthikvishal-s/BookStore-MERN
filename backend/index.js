@@ -1,14 +1,20 @@
 import express from "express";
 import {PORT,mongoDBURL} from "./config.js"  // Importing the PORT constant from config.js
 import mongoose from "mongoose"; // Importing mongoose for MongoDB object modeling
+import { Book } from "./models/bookModels.js" // Importing the Book model from bookModels.js
+import booksRoute from "./routes/booksRoute.js" // Importing the booksRoute from booksRoute.js
 
 const app=express();
+
+app.use(express.json()); // Middleware to parse JSON request bodies
 
 app.get('/',(req,res)=>{  //Creating a route for the root URL
    console.log(req); //Logging the request object to the console
    return res.status(234).send("Hello World"); //Sending a response with status code 234 and the message "Hello World"
 });
 
+
+app.use('/books',booksRoute)
 
 
 
@@ -21,5 +27,5 @@ mongoose
         });
     })
     .catch((error) => {
-        console.log("Error connecting to MongoDB:");
+        console.error("Error connecting to MongoDB:",error.message); //Logging the error message if the connection fails
     });
