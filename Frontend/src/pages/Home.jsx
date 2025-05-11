@@ -34,38 +34,39 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <div className='flex justify-between items-center'>
-        <h1 className='text-3xl my-8'>
-          Books List
+    <div className='bg-yellow-200 min-h-screen'>
+      <div className='flex justify-around items-center '>
+        <h1 className='text-3xl  my-8 text-red-600 font-bold'>
+          <center>Books List</center>
         </h1>
-        <Link to='/books/create' className='bg-blue-500 text-white px-4 py-2 rounded flex items-center'>
-          <MdOutlineAddBox className='mr-2' />
+        <Link to='/books/create' className='bg-blue-500 text-2xl text-white px-4 py-2 rounded-lg flex items-center hover:text-blue-200'>
+          <MdOutlineAddBox className='align-center mr-2 text-3xl' />
           Create Book
         </Link>
-      </div>
+      </div><br></br><br></br>
       {loading ? (
         <Spinner />
       ) : error ? (
         <div className="text-red-500 text-center">{error}</div>
       ) : books && books.length > 0 ? (
-        <table className='min-w-full border border-gray-300'>
+        <div>
+        <table className=' border border-gray-300 justify-around min-w-screen items-center s'>
           <thead>
             <tr>
-              <th className='border px-4 py-2'>No</th>
-              <th className='border px-4 py-2'>Title</th>
-              <th className='border px-4 py-2 max-md:hidden'>Author</th>
-              <th className='border px-4 py-2 max-md:hidden'>Publish Year</th>
-              <th className='border px-4 py-2'>Actions</th>
+              <th className='border px-2 py-2 text-2xl'>No</th>
+              <th className='border px-4 py-2 text-2xl'>Title</th>
+              <th className='border px-4 py-2 max-md:hidden text-2xl'>Author</th>
+              <th className='border px-2 py-2 max-md:hidden text-2xl'>Publish Year</th>
+              <th className='border px-4 py-2 text-2xl'>Actions</th>
             </tr>
           </thead>
           <tbody>
             {books.map((book, index) => (
-              <tr key={book._id} className='h-8'>
+              <tr key={book._id} className='h-8 hover:bg-gray-100'>
                 <td className='border px-4 py-2'>{index + 1}</td>
                 <td className='border px-4 py-2'>{book.title}</td>
                 <td className='border px-4 py-2 max-md:hidden'>{book.author}</td>
-                <td className='border px-4 py-2 max-md:hidden'>{book.publishYear}</td>
+                <td className='border px-4 py-2 max-md:hidden text-center'>{book.publishYear}</td>
                 <td className='border px-4 py-2'>
                   <div className='flex justify-center gap-x-4'>
                     <Link to={`/books/details/${book._id}`} className='text-blue-500 hover:text-blue-800'>
@@ -82,7 +83,7 @@ const Home = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       ) : (
         <div className="text-center py-4">No books found. Add some books to see them here.</div>
       )}
