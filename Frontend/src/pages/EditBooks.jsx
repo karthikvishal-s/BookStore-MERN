@@ -16,7 +16,7 @@ const EditBooks = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://book-store-api-two-psi.vercel.app/books/${id}`)
+      .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
         setTitle(response.data.title);
         setAuthor(response.data.author);
@@ -33,7 +33,7 @@ const EditBooks = () => {
     
     setLoading(true);
     axios
-      .put(`https://book-store-api-two-psi.vercel.app/books/${id}`, {
+      .put(`http://localhost:5555/books/${id}`, {
         title,
         author,
         publishYear,

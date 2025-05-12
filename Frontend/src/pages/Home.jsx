@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('https://book-store-api-two-psi.vercel.app/books')
+      .get('http://localhost:5555/books')
       .then((response) => {
         // Check response structure and access books correctly
         if (response.data.books) {
