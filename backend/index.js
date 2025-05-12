@@ -7,7 +7,7 @@ import cors from 'cors'; // Importing cors for Cross-Origin Resource Sharing
 
 const app=express();
 app.use(cors({
-    origin:[""],
+    origin:["https://book-store-client-theta.vercel.app"],
     methods:["GET","POST","PUT","DELETE"],
     credentials:true,
 }));
