@@ -1,13 +1,13 @@
 import express from "express";
 import {PORT,mongoDBURL} from "./config.js"  // Importing the PORT constant from config.js
 import mongoose from "mongoose"; // Importing mongoose for MongoDB object modeling
-import { Book } from "./models/bookModels.js" // Importing the Book model from bookModels.js
+
 import booksRoute from "./routes/booksRoute.js" // Importing the booksRoute from booksRoute.js
 import cors from 'cors'; // Importing cors for Cross-Origin Resource Sharing
 
 const app=express();
 app.use(cors({
-    origin:["https://book-store-client-theta.vercel.app"],
+    origin:'*', // Allowing all origins to access the resources
     methods:["GET","POST","PUT","DELETE"],
     credentials:true,
 }));
