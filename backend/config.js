@@ -1,7 +1,7 @@
-export const PORT=5555;
 
-export  const mongoDBURL=
-    'mongodb+srv://root:root@bookstore.eq0hudx.mongodb.net/books-collection?retryWrites=true&w=majority&appName=BookStore';
-    // This is a MongoDB connection string that includes the username, password, and database name
-    // The connection string is used to connect to a MongoDB database hosted on MongoDB Atlas
-    
+
+
+export const PORT = process.env.PORT || 5555;
+
+// Use environment variable in production, fallback for development
+export const mongoDBURL = process.env.MONGODB_URL || 'mongodb+srv://root:root@bookstore.eq0hudx.mongodb.net/books-collection?retryWrites=true&w=majority&appName=BookStore';
