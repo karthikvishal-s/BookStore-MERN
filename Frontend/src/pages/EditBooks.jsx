@@ -16,7 +16,7 @@ const EditBooks = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://book-store-backend-jet.vercel.app/books/${id}`)
+      .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
         setTitle(response.data.title);
         setAuthor(response.data.author);
@@ -33,7 +33,7 @@ const EditBooks = () => {
     
     setLoading(true);
     axios
-      .put(`https://book-store-backend-jet.vercel.app/books/${id}`, {
+      .put(`http://localhost:5555/books/${id}`, {
         title,
         author,
         publishYear,
@@ -41,7 +41,7 @@ const EditBooks = () => {
       .then((response) => {
         console.log('Book created:', response.data);
         setLoading(false);
-        navigate('/');
+        navigate('/home');
       })
       .catch((error) => {
         console.error('Error creating book:', error);
@@ -51,7 +51,7 @@ const EditBooks = () => {
 
   return (
     <div className='p-4'>
-      <BackButton destination='/' />
+      <BackButton destination='/home' />
       <h1 className='text-3xl font-bold text-center'>Edit Book</h1>
       {loading ? (
         <Spinner />

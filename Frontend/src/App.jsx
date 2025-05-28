@@ -5,11 +5,12 @@ import ShowBooks from './pages/ShowBooks'
 import EditBooks from './pages/EditBooks'
 import DeleteBooks from './pages/DeleteBooks'
 import CreateBooks from './pages/CreateBooks'
-
+import Welcome from './pages/Welcome'
 const App = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path='/' element={<Welcome />} />
+      <Route path='/home' element={<Home />} />
       <Route path='/books/create' element={<CreateBooks />} />
       <Route path='/books/details/:id' element={<ShowBooks />} />
       <Route path='/books/edit/:id' element={<EditBooks />} />

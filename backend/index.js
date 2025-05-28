@@ -11,11 +11,11 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 
 app.get('/',(req,res)=>{  //Creating a route for the root URL
    console.log(req); //Logging the request object to the console
-   return res.status(234).send("Hello World"); //Sending a response with status code 234 and the message "Hello World"
+   return res.status(200).send("Hello World"); //Sending a response with status code 234 and the message "Hello World"
 });
 
 
-app.use('/books',booksRoute)
+app.use('/books',booksRoute)//Middleware to use the booksRoute for all requests to /books
 
 //Middleware to enable CORS for all routes
  //Allowing all origins to access the resources

@@ -15,7 +15,7 @@ const DeleteBooks = () => {
   const handleDelete = () => {
     setLoading(true);
     axios
-      .delete(`https://book-store-backend-jet.vercel.app/books/${id}`)
+      .delete(`http://localhost:5555/books/${id}`)
       .then((response) => {
         console.log('Book deleted:', response.data);
         setLoading(false);

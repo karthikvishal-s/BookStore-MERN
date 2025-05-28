@@ -9,21 +9,23 @@ const CreateBooks = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
+  const [link, setLink] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     
     setLoading(true);
     axios
-      .post('https://book-store-backend-jet.vercel.app/books', {
+      .post('http://localhost:5555/books', {
         title,
         author,
         publishYear,
+        link,
       })
       .then((response) => {
         console.log('Book created:', response.data);
         setLoading(false);
-        navigate('/');
+        navigate('/home');
       })
       .catch((error) => {
         console.error('Error creating book:', error);
@@ -33,7 +35,7 @@ const CreateBooks = () => {
 
   return (
     <div className='p-4'>
-      <BackButton destination='/' />
+      <BackButton destination='/home' />
       <h1 className='text-3xl font-bold text-center'>Create Book</h1>
       {loading ? (
         <Spinner />
@@ -65,6 +67,16 @@ const CreateBooks = () => {
               type='number'
               value={publishYear}
               onChange={(e) => setPublishYear(e.target.value)}
+              className='border border-gray-300 p-2 w-full'
+              required
+            />
+          </div>
+          <div className='mb-4'>
+            <label className='block text-lg font-semibold mb-2'>link</label>
+            <input
+              type='text'
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
               className='border border-gray-300 p-2 w-full'
               required
             />

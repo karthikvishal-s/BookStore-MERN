@@ -4,26 +4,32 @@
     "description": "MERN Stack Bookstore Application",
     "main": "index.js",
     "scripts": {
-      "install-client": "cd frontend && npm install",
-      "install-server": "cd backend && npm install",
-      "install": "npm run install-client && npm run install-server",
-      "build-client": "cd frontend && npm run build",
-      "build": "npm run build-client",
-      "start-client": "cd frontend && npm start",
-      "start-server": "cd backend && npm start",
-      "dev": "concurrently \"npm run start-server\" \"npm run start-client\""
+        "install-client": "cd frontend && npm install",
+        "install-server": "cd backend && npm install",
+        "install": "npm run install-client && npm run install-server",
+        "build-client": "cd frontend && npm run build",
+        "build": "npm run build-client",
+        "start-client": "cd frontend && npm start",
+        "start-server": "cd backend && npm start",
+        "dev": "concurrently \"npm run start-server\" \"npm run start-client\""
     },
     "keywords": [
-      "mern",
-      "bookstore",
-      "react",
-      "node",
-      "mongodb",
-      "express"
+        "mern",
+        "bookstore",
+        "react",
+        "node",
+        "mongodb",
+        "express"
     ],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-      "concurrently": "^8.2.0"
+        "concurrently": "^8.2.0"
+    },
+    "dependencies": {
+        "autoprefixer": "^10.4.21",
+        "npx": "^10.2.2",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^4.1.7"
     }
-  }
+}

@@ -14,6 +14,10 @@ const bookSchema =mongoose.Schema(
             type:Number,
             required:true,
         },
+        link:{
+            type:String,
+            required:true,
+        },
 
 },{
     timestamps:true, // Automatically add createdAt and updatedAt fields
@@ -21,4 +25,4 @@ const bookSchema =mongoose.Schema(
 )
 
 
-export const Book = mongoose.model('Cat', bookSchema);// Create a model named 'Cat' using the bookSchema
+export const Book = mongoose.model('Book', bookSchema);// Create a model named 'Cat' using the bookSchema

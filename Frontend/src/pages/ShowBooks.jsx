@@ -13,7 +13,7 @@ const ShowBooks = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://book-store-backend-jet.vercel.app/books/${id}`)
+      .get(`http://localhost:5555/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
@@ -25,7 +25,7 @@ const ShowBooks = () => {
 //1
   return (
     <div className='p-4'>
-      <BackButton/>
+      <BackButton destination={'/home'}/>
       <h1 className='text-3xl font-bold text-center'>Book Details</h1>
       {loading ? (
         <Spinner />
@@ -34,6 +34,7 @@ const ShowBooks = () => {
           <h2 className='text-2xl font-semibold mb-2'>Title: {book.title}</h2>
           <p className='text-lg mb-2'>Author: {book.author}</p>
           <p className='text-lg mb-2'>Publish Year: {book.publishYear}</p>
+          <p className='text-lg mb-2'>Link: <a href={book.link} target="_blank" rel="noopener noreferrer" className='text-blue-500'>{book.link}</a></p>
           <p className='text-lg mb-2'>Created At: {new Date(book.createdAt).toString()}</p>
           <p className='text-lg mb-2'>Updated At: {new Date(book.updatedAt).toString()}</p>
         </div>
