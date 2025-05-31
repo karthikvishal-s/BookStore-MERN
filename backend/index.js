@@ -7,7 +7,7 @@ import cors from 'cors'; // Importing cors for Cross-Origin Resource Sharing
 
 const app=express();
 app.use(cors({
-    origin:'https://book-store-backend-jet.vercel.app'
+    origin:'https://pensieve-karthik.vercel.app'
 }));
 app.use(express.json()); // Middleware to parse JSON request bodies
 
