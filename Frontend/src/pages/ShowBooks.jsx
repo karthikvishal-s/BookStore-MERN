@@ -1,19 +1,18 @@
-import React from 'react'
-import { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-import  Spinner from '../components/Spinner';
+import Spinner from '../components/Spinner';
 
 const ShowBooks = () => {
-  const {id} = useParams();
-  const [book,setBook] = useState({});
-  const [loading,setLoading] = useState(true);
+  const { id } = useParams();
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`https://book-store-backend-jet.vercel.app/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
@@ -21,26 +20,59 @@ const ShowBooks = () => {
       .catch((error) => {
         console.error('Error fetching book:', error);
         setLoading(false);
-      });},[id])
-//1
-  return (
-    <div className='p-4'>
-      <BackButton destination={'/home'}/>
-      <h1 className='text-3xl font-bold text-center'>Book Details</h1>
-      {loading ? (
+      });
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex bg-gradient-to-b from-black via-sky-900 to-black px-4">
         <Spinner />
-      ) : (
-        <div className='bg-yellow-200 p-4 rounded-lg shadow-md'>
-          <h2 className='text-2xl font-semibold mb-2'>Title: {book.title}</h2>
-          <p className='text-lg mb-2'>Author: {book.author}</p>
-          <p className='text-lg mb-2'>Publish Year: {book.publishYear}</p>
-          <p className='text-lg mb-2'>Link: <a href={book.link} target="_blank" rel="noopener noreferrer" className='text-blue-500'>{book.link}</a></p>
-          <p className='text-lg mb-2'>Created At: {new Date(book.createdAt).toString()}</p>
-          <p className='text-lg mb-2'>Updated At: {new Date(book.updatedAt).toString()}</p>
+      </div>
+    );
+  }
+
+  if (!book) {
+    return (
+      <div className="min-h-screen flex flex-col  bg-gradient-to-b from-black via-sky-900 to-black px-4 text-white">
+        <BackButton destination="/home" />
+        <p className="mt-10 text-xl">Book not found.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className=' min-h-screen bg-gradient-to-b from-black via-sky-900 to-black px-4 py-8 flex flex-col '>
+      <div >
+      <BackButton destination="/home" /></div>
+
+      <div className="flex justify-center items-center">
+      
+      <div className="justify-center items-center  bg-opacity-100 backdrop-blur-lg rounded-xl shadow-lg max-w-xl w-full p-8 text-white mt-6">
+        <h1 className="text-4xl font-bold mb-6 text-center">{book.title}</h1>
+        <div className="space-y-4 text-lg">
+          <p><span className="font-semibold">Author:</span> {book.author}</p>
+          <p><span className="font-semibold">Publish Year:</span> {book.publishYear}</p>
+          {book.link && (
+            <p>
+              <span className="font-semibold">Link:</span>{' '}
+              <a
+                href={book.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 hover:text-sky-600 underline break-all"
+              >
+                {book.link}
+              </a>
+            </p>
+          )}
+          <p><span className="font-semibold">Created At:</span> {new Date(book.createdAt).toLocaleString()}</p>
+          <p><span className="font-semibold">Updated At:</span> {new Date(book.updatedAt).toLocaleString()}</p>
         </div>
-      )}
+      </div>
     </div>
-  )
-}
+    </div>
+    
+  );
+};
 
 export default ShowBooks;

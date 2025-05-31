@@ -18,14 +18,14 @@ const Welcome = () => {
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4">
         <div className="max-w-3xl text-center">
           <h1
-            className={`mb-8 text-4xl font-bold sm:text-6xl lg:text-7xl text-white transition-all duration-[1000ms] delay-[400ms] ease-out transform ${
+            className={`mb-8 text-4xl font-bold sm:text-6xl lg:text-7xl text-white transition-all duration-[1400ms] delay-[600ms] ease-out transform ${
               loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             PenSieve
           </h1>
 
-          <p className={` text-xl text-white mb-47 mt-10 transition-all duration-[1600ms] delay-[1000ms] ease-out transform ${
+          <p className={` text-xl text-white mb-27 mt-10 transition-all duration-[1600ms] delay-[1500ms] ease-out transform ${
               loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             “Dive into your stories. Store, edit, and explore your book collection with ease.”
           </p>
@@ -33,15 +33,15 @@ const Welcome = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               to="/home"
-              className={`rounded-lg px-6 py-3 font-medium border text-white hover:bg-sky-800  transition-all duration-[1600ms] delay-[1600ms] ease-out transform ${
+              className={`rounded-lg px-6 py-3 font-medium border text-white transition-all duration-[1800ms] delay-[2400ms] ease-out transform ${
               loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
             >
-              Get Started
+              <p className='hover:bg-grey-300'>Get Started</p>
             </Link>
-            <button className={`rounded-lg border px-6 py-3 font-medium border-slate-200  text-white hover:bg-slate-50  transition-all duration-[1600ms] delay-[2000ms] ease-out transform ${
+            <Link  to='/about' className={`rounded-lg border px-6 py-3 font-medium border-slate-200  text-white hover:bg-slate-50  transition-all duration-[1800ms] delay-[2400ms] ease-out transform ${
               loaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
       </div>

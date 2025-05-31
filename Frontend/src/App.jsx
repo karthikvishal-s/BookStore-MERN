@@ -6,10 +6,12 @@ import EditBooks from './pages/EditBooks'
 import DeleteBooks from './pages/DeleteBooks'
 import CreateBooks from './pages/CreateBooks'
 import Welcome from './pages/Welcome'
+import About from './pages/About'
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Welcome />} />
+      <Route path='/about' element={<About/>}></Route>
       <Route path='/home' element={<Home />} />
       <Route path='/books/create' element={<CreateBooks />} />
       <Route path='/books/details/:id' element={<ShowBooks />} />
