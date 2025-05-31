@@ -23,7 +23,7 @@ const Home = () => {
   const fetchBooks = () => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/books')
+      .get('https://book-store-backend-jet.vercel.app/books')
       .then((response) => {
         const data = response.data.books || response.data.data || response.data;
         setBooks(Array.isArray(data) ? data : []);
