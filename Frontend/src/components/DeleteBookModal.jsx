@@ -8,7 +8,7 @@ const DeleteBookModal = ({ id, onClose, onSuccess }) => {
   const handleDelete = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5555/books/${id}`)
+      .delete(`https://book-store-backend-jet.vercel.app/books/${id}`)
       .then((response) => {
         setLoading(false);
         onSuccess();   // Refresh list after delete
