@@ -1,23 +1,33 @@
-// api/index.js
 import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
-import booksRoute from "../routes/booksRoute.js";
-import { mongoDBURL } from "../config.js";
-import serverless from "serverless-http";
+import {PORT,mongoDBURL} from "./config.js"  // Importing the PORT constant from config.js
+import mongoose from "mongoose"; // Importing mongoose for MongoDB object modeling
 
-const app = express();
+import booksRoute from "./routes/booksRoute.js" // Importing the booksRoute from booksRoute.js
+import cors from 'cors'; // Importing cors for Cross-Origin Resource Sharing
+
+const app=express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON request bodies
 
-app.use('/books', booksRoute);
+app.get('/',(req,res)=>{  //Creating a route for the root URL
+   console.log(req); //Logging the request object to the console
+   return res.status(200).send("Hello World"); //Sending a response with status code 234 and the message "Hello World"
+});
 
-// Connect to MongoDB
-mongoose.connect(mongoDBURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.error("MongoDB error:", error));
 
-// Export for Vercel
-export const handler = serverless(app);
+app.use('/books',booksRoute)//Middleware to use the booksRoute for all requests to /books
+
+//Middleware to enable CORS for all routes
+ //Allowing all origins to access the resources
+
+mongoose
+    .connect(mongoDBURL)
+    .then(() => {
+        console.log("Connected to MongoDB");
+        app.listen(PORT,()=>{   //.listen() method is used in express to bind and listen for connections on the specified host and port
+            console.log(`Application is running on port ${PORT}`); //Callback function
+        });
+    })
+    .catch((error) => {
+        console.error("Error connecting to MongoDB:",error.message); //Logging the error message if the connection fails
+    });
