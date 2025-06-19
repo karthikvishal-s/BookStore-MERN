@@ -118,36 +118,38 @@ const Home = () => {
               book.title.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .map((book) => (
-              <Link
-                key={book._id}
-                className='border border-gray-800 bg-opacity-1000 backdrop-blur-lg text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow hover:scale-[1.02] duration-300 cursor-pointer'
-                to={`/books/details/${book._id}`}
-                
-              >
-                <h2 className='text-xl font-semibold mb-4 text-gray-300'>{book.title}</h2>
-                <p className='text-sm  mb-1 text-gray-500'><span className='font-medium'>by</span> {book.author}</p>
-                <p className='text-sm text-gray-500 mb-4'><span className='font-medium'></span> {book.publishYear}</p>
-                <div className='flex justify-between mt-4'>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleEditClick(book._id);
-                    }}
-                    className='text-green-400 hover:text-green-600'
-                  >
-                    <AiOutlineEdit className='text-2xl' />
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleDeleteClick(book._id);
-                    }}
-                    className='text-red-400 hover:text-red-600'
-                  >
-                    <AiOutlineDelete className='text-2xl' />
-                  </button>
-                </div>
-              </Link>
+              <div
+  key={book._id}
+  className='border border-gray-800 bg-opacity-1000 backdrop-blur-lg text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow hover:scale-[1.02] duration-300 cursor-pointer'
+>
+  <Link to={`/books/details/${book._id}`}>
+    <h2 className='text-xl font-semibold mb-4 text-gray-300'>{book.title}</h2>
+    <p className='text-sm  mb-1 text-gray-500'><span className='font-medium'>by</span> {book.author}</p>
+    <p className='text-sm text-gray-500 mb-4'>{book.publishYear}</p>
+  </Link>
+
+  <div className='flex justify-between mt-4'>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        handleEditClick(book._id);
+      }}
+      className='text-green-400 hover:text-green-600'
+    >
+      <AiOutlineEdit className='text-2xl' />
+    </button>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        handleDeleteClick(book._id);
+      }}
+      className='text-red-400 hover:text-red-600'
+    >
+      <AiOutlineDelete className='text-2xl' />
+    </button>
+  </div>
+</div>
+
             ))}
         </div>
       )}
