@@ -118,10 +118,11 @@ const Home = () => {
               book.title.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .map((book) => (
-              <div
+              <Link
                 key={book._id}
                 className='border border-gray-800 bg-opacity-1000 backdrop-blur-lg text-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow hover:scale-[1.02] duration-300 cursor-pointer'
-                onClick={() => window.location.href = `/books/details/${book._id}`}
+                to={`/books/details/${book._id}`}
+                
               >
                 <h2 className='text-xl font-semibold mb-4 text-gray-300'>{book.title}</h2>
                 <p className='text-sm  mb-1 text-gray-500'><span className='font-medium'>by</span> {book.author}</p>
@@ -146,7 +147,7 @@ const Home = () => {
                     <AiOutlineDelete className='text-2xl' />
                   </button>
                 </div>
-              </div>
+              </Link>
             ))}
         </div>
       )}

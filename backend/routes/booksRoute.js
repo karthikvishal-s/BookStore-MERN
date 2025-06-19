@@ -1,9 +1,9 @@
 import express from 'express';
-import { Book } from '../models/bookModels.js'; // Importing the Book model
+import { Book } from '../models/bookModels.js'; 
 
-const router = express.Router(); // Creating an instance of the Express Router
+const router = express.Router(); 
 
-// ✅ Route to get the sum of all publish years
+
 router.get('/sum/publishYear', async (req, res) => {
     try {
         const result = await Book.aggregate([
@@ -22,7 +22,7 @@ router.get('/sum/publishYear', async (req, res) => {
         return res.status(500).send({ message: "Failed to calculate total publish year" });
     }
 });
-// Route to save a book
+
 router.post('/', async (req, res) => {
     try {
         if (!req.body.title || !req.body.author || !req.body.publishYear || !req.body.link) {
@@ -34,8 +34,8 @@ router.post('/', async (req, res) => {
             publishYear: req.body.publishYear,
             link: req.body.link,
         };
-        const book = await Book.create(newBook); // Creating a new book using the Book model
-        return res.status(201).send(book); // Sending a response with status code 201 and the created book
+        const book = await Book.create(newBook); 
+        return res.status(201).send(book);
     } catch (error) {
         console.log(error);
         return res.status(500).send({ message: error.message });
