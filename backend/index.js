@@ -6,7 +6,9 @@ import booksRoute from "./routes/booksRoute.js" // Importing the booksRoute from
 import cors from 'cors'; // Importing cors for Cross-Origin Resource Sharing
 
 const app=express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://thepensieve.vercel.app' // or 'http://localhost:3000' for development
+  }));
 app.use(express.json()); // Middleware to parse JSON request bodies
 
 app.get('/',(req,res)=>{  //Creating a route for the root URL
